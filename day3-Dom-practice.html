@@ -1,0 +1,142 @@
+<!--Task 1  Form Validation-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registration Form</title>
+  <style>
+    .error {
+      color: pink;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Register</h2>
+
+  <form id="registerForm">
+    <div>
+      <label>Username:</label><br />
+      <input type="text" id="username" />
+    </div>
+
+    <div>
+      <label>Email:</label><br />
+      <input type="text" id="email" />
+    </div>
+
+    <div>
+      <label>Password:</label><br />
+      <input type="password" id="password" />
+    </div>
+
+    <div>
+      <label>Confirm Password:</label><br />
+      <input type="password" id="confirmPassword" />
+    </div>
+
+    <button type="submit">Register</button>
+
+    <!-- Error messages will appear here -->
+    <div id="errorMessage" class="error"></div>
+  </form>
+
+  <script>
+
+        const form = document.getElementById('registerForm');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const errorMessage = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const username = usernameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        errorMessage.textContent = '';
+
+        if (username.length < 3) {
+            errorMessage.textContent = 'Username must be at least 3 characters long';
+            return;
+        }
+
+        if (!email.includes('@') || !email.includes('.')) {
+            errorMessage.textContent = 'Please enter a valid email address';
+            return;
+        }
+
+        if (password.length < 6) {
+            errorMessage.textContent = 'Password must be at least 6 characters long';
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            errorMessage.textContent = 'Passwords do not match';
+            return;
+        }
+
+        alert('Registration successful!');
+        form.reset();
+        });
+
+</script>
+</body>
+</html>
+
+
+
+
+
+<!--Task 2  Toggle Button-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toggle Button</title>
+
+  <style>
+    /* Box default styles */
+    .box {
+      width: 200px;
+      height: 200px;
+      background: blue;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+
+    /* Active state styles */
+    .box.active {
+      background: red;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <button id="toggleBtn">Toggle</button>
+
+  <div class="box" id="box">
+    This box will change
+  </div>
+
+  <script>
+    
+    const toggleButton = document.getElementById('toggleBtn');
+    const box = document.getElementById('box');
+
+    toggleButton.addEventListener('click', function () {
+      box.classList.toggle('active');
+    });
+
+  </script>
+
+</body>
+</html>
